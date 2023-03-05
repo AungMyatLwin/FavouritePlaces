@@ -22,7 +22,7 @@ export default function App() {
                 <IconButton
                   name='add'
                   size={24}
-                  color={COLORS.primary20}
+                  color={tintColor}
                   onPress={() => navigation.navigate("AddPlace")}
                 />
               ),
