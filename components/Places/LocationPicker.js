@@ -57,9 +57,7 @@ function LocationPicker() {
       //   pickedLocation.lat,
       //       pickedLocation.lng
       // ) }} style={styles.image} />
-      <Text>
-        {pickedLocation.lat} {pickedLocation.lng}
-      </Text>
+      <Text>{getMapPreview(pickedLocation.lat, pickedLocation.lng)}</Text>
     );
   }
   return (
