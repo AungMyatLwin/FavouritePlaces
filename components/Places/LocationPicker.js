@@ -1,6 +1,7 @@
-import { Alert, Image, StyleSheet, View } from "react-native";
+import { Alert, Image, StyleSheet, Text, View } from "react-native";
 import { COLORS } from "../../constants/colors";
 import OutLineButton from "../ui/OutlineButton";
+import { WebView } from "react-native-webview";
 import {
   getCurrentPositionAsync,
   PermissionStatus,
@@ -8,6 +9,7 @@ import {
 } from "expo-location";
 import { useState } from "react";
 import { getMapPreview } from "../../util/location";
+import Map from "../../screens/Map";
 
 function LocationPicker() {
   const [pickedLocation, setPickedLocation] = useState({});
@@ -31,7 +33,7 @@ function LocationPicker() {
     return true;
   }
   async function getLocationHandler() {
-    const hasPermission = await verifyPermissions;
+    const hasPermission = await verifyPermissions();
     if (!hasPermission) {
       return;
     }
@@ -47,7 +49,25 @@ function LocationPicker() {
   let locationPreview = <Text>No location picked yet.</Text>;
   if (locationPreview) {
     locationPreview = (
-      <Image source={{ uri: getMapPreview() }} style={styles.image} />
+      // <Image source={{ uri: getMapPreview(
+      //   pickedLocation.lat,
+      //       pickedLocation.lng
+      // ) }} style={styles.image} />
+
+      // <WebView
+      //   style={styles.image}
+      //   source={{
+      //     uri: `https://www.google.com/maps/@${getMapPreview(
+      //       pickedLocation.lat,
+      //       pickedLocation.lng
+      //     )},18z`,
+      //   }}
+      // />
+      <Map
+        style={styles.image}
+        lat={pickedLocation.lat}
+        lng={pickedLocation.lng}
+      />
     );
   }
   return (
@@ -75,6 +95,7 @@ const styles = StyleSheet.create({
     alignContent: "center",
     backgroundColor: COLORS.primary100,
     borderRadius: 4,
+    overflow: "hidden",
   },
   actions: {
     flexDirection: "row",
@@ -84,5 +105,6 @@ const styles = StyleSheet.create({
   image: {
     width: "100%",
     height: "100%",
+    borderRadius: 4,
   },
 });

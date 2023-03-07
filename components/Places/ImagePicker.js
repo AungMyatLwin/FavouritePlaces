@@ -47,7 +47,7 @@ function ImagePicker() {
     <View>
       <View style={styles.imagePreview}>{imageReview}</View>
       {/* <Button title='Take Image' onPress={takeImageHandler} /> */}
-      <OutLineButton icon={"camera"}>Take Image</OutLineButton>
+      <OutLineButton icon={"camera"}>Take Image </OutLineButton>
     </View>
   );
 }
@@ -63,6 +63,7 @@ const styles = StyleSheet.create({
     alignContent: "center",
     backgroundColor: COLORS.primary100,
     borderRadius: 4,
+    overflow: "hidden",
   },
   image: {
     width: "100%",
