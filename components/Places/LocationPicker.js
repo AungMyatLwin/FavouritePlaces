@@ -53,21 +53,9 @@ function LocationPicker() {
       //   pickedLocation.lat,
       //       pickedLocation.lng
       // ) }} style={styles.image} />
-
-      // <WebView
-      //   style={styles.image}
-      //   source={{
-      //     uri: `https://www.google.com/maps/@${getMapPreview(
-      //       pickedLocation.lat,
-      //       pickedLocation.lng
-      //     )},18z`,
-      //   }}
-      // />
-      <Map
-        style={styles.image}
-        lat={pickedLocation.lat}
-        lng={pickedLocation.lng}
-      />
+      <Text>
+        {pickedLocation.lat} {pickedLocation.lng}
+      </Text>
     );
   }
   return (
@@ -105,6 +93,5 @@ const styles = StyleSheet.create({
   image: {
     width: "100%",
     height: "100%",
-    borderRadius: 4,
   },
 });

@@ -1,10 +1,9 @@
 import MapView from "react-native-maps";
 
-function Map(lat, lng) {
-  console.log(lat, lng);
+function Map() {
   const region = {
-    latitude: lat,
-    longitude: lng,
+    latitude: 24.554,
+    longitude: 42.566,
     latitudeDelta: 0.0922,
     longitudeDelta: 0.0421,
   };
