@@ -9,6 +9,7 @@ import {
 } from "expo-location";
 import { useState } from "react";
 import { getMapPreview } from "../../util/location";
+import Map from "../../screens/Map";
 
 function LocationPicker() {
   const [pickedLocation, setPickedLocation] = useState({});
@@ -53,14 +54,19 @@ function LocationPicker() {
       //       pickedLocation.lng
       // ) }} style={styles.image} />
 
-      <WebView
+      // <WebView
+      //   style={styles.image}
+      //   source={{
+      //     uri: `https://www.google.com/maps/@${getMapPreview(
+      //       pickedLocation.lat,
+      //       pickedLocation.lng
+      //     )},18z`,
+      //   }}
+      // />
+      <Map
         style={styles.image}
-        source={{
-          uri: `https://www.google.com/maps/@${getMapPreview(
-            pickedLocation.lat,
-            pickedLocation.lng
-          )},18z`,
-        }}
+        lat={pickedLocation.lat}
+        lng={pickedLocation.lng}
       />
     );
   }
