@@ -9,10 +9,12 @@ import {
 } from "expo-location";
 import { useState } from "react";
 import { getMapPreview } from "../../util/location";
-import Map from "../../screens/Map";
-
+import { useNavigation } from "@react-navigation/core";
 function LocationPicker() {
   const [pickedLocation, setPickedLocation] = useState({});
+
+  const navigation = useNavigation();
+
   const [locationPermissionInformation, requestPermission] =
     useForegroundPermissions();
 
@@ -43,7 +45,9 @@ function LocationPicker() {
       lng: location.coords.longitude,
     });
   }
-  function pickOnMapHandler() {}
+  function pickOnMapHandler() {
+    navigation.navigate("Map");
+  }
   console.log(pickedLocation);
 
   let locationPreview = <Text>No location picked yet.</Text>;
