@@ -13,7 +13,7 @@ function Map({ navigation }) {
   };
   function selectLocationHandler(event) {
     const lat = event.nativeEvent.coordinate.latitude;
-    const lng = event.nativeEvent.coordinate.longtitude;
+    const lng = event.nativeEvent.coordinate.longitude;
 
     setSelectedLocation({ lat: lat, lng: lng });
   }
