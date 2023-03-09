@@ -8,7 +8,7 @@ import {
 import { COLORS } from "../../constants/colors";
 import OutLineButton from "../ui/OutlineButton";
 
-function ImagePicker() {
+function ImagePicker({ onTakeImage }) {
   const [pickedImage, setPickedImage] = useState();
   const [cameraPermissionInformation, requestPermission] =
     useCameraPermissions();
@@ -38,6 +38,7 @@ function ImagePicker() {
       quality: 0.5,
     });
     setPickedImage(image.assets[0].uri);
+    onTakeImage(image.assets[0].uri);
   }
   let imageReview = <Text>No image taken yet.</Text>;
   if (imageReview) {
@@ -47,7 +48,9 @@ function ImagePicker() {
     <View>
       <View style={styles.imagePreview}>{imageReview}</View>
       {/* <Button title='Take Image' onPress={takeImageHandler} /> */}
-      <OutLineButton icon={"camera"}>Take Image </OutLineButton>
+      <OutLineButton icon={"camera"} onPress={takeImageHandler}>
+        Take Image{" "}
+      </OutLineButton>
     </View>
   );
 }

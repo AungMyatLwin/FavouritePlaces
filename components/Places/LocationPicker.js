@@ -10,7 +10,8 @@ import {
 import { useEffect, useState } from "react";
 import { getMapPreview } from "../../util/location";
 import { useNavigation, useRoute, useIsFocused } from "@react-navigation/core";
-function LocationPicker() {
+import MapView from "react-native-maps";
+function LocationPicker({ onPickLocation }) {
   const [pickedLocation, setPickedLocation] = useState({});
   const isFocused = useIsFocused();
   const navigation = useNavigation();
@@ -28,6 +29,10 @@ function LocationPicker() {
       setPickedLocation(mapPickedLocation);
     }
   }, [route, isFocused]);
+
+  useEffect(() => {
+    onPickLocation(pickedLocation);
+  }, [pickedLocation, onPickLocation]);
 
   async function verifyPermissions() {
     if (
@@ -60,8 +65,12 @@ function LocationPicker() {
   function pickOnMapHandler() {
     navigation.navigate("Map");
   }
-  console.log(pickedLocation);
-
+  const region = {
+    latitude: 16.7773425,
+    longitude: 96.1689462,
+    latitudeDelta: 0.0922,
+    longitudeDelta: 0.0421,
+  };
   let locationPreview = <Text>No location picked yet.</Text>;
   if (locationPreview) {
     locationPreview = (
@@ -69,7 +78,8 @@ function LocationPicker() {
       //   pickedLocation.lat,
       //       pickedLocation.lng
       // ) }} style={styles.image} />
-      <Text>{getMapPreview(pickedLocation.lat, pickedLocation.lng)}</Text>
+      <MapView initialRegion={region} style={styles.image}></MapView>
+      // <Text>{getMapPreview(pickedLocation.lat, pickedLocation.lng)}</Text>
     );
   }
   return (
