@@ -2,6 +2,7 @@ import { useCallback, useLayoutEffect, useState } from "react";
 import { Alert, StyleSheet } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import IconButton from "../components/ui/IconButton";
+import { COLORS } from "../constants/colors";
 
 function Map({ navigation }) {
   const [selectedLocation, setSelectedLocation] = useState();
@@ -36,9 +37,9 @@ function Map({ navigation }) {
     navigation.setOptions({
       headerRight: ({ tintColor }) => (
         <IconButton
-          icon='save'
+          icon='add'
           size={24}
-          color={tintColor}
+          color={COLORS.accent500}
           onPress={savePickedLocationHandler}
         />
       ),

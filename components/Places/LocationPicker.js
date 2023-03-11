@@ -8,7 +8,7 @@ import {
   useForegroundPermissions,
 } from "expo-location";
 import { useEffect, useState } from "react";
-import { getMapPreview } from "../../util/location";
+import { getAddress, getMapPreview } from "../../util/location";
 import { useNavigation, useRoute, useIsFocused } from "@react-navigation/core";
 import MapView from "react-native-maps";
 function LocationPicker({ onPickLocation }) {
@@ -31,7 +31,17 @@ function LocationPicker({ onPickLocation }) {
   }, [route, isFocused]);
 
   useEffect(() => {
-    onPickLocation(pickedLocation);
+    async function handleLocation() {
+      if (pickedLocation) {
+        const address = await getAddress(
+          pickedLocation.lat,
+          pickedLocation.lng
+        );
+        console.log(address);
+        onPickLocation({ ...pickedLocation });
+      }
+    }
+    handleLocation();
   }, [pickedLocation, onPickLocation]);
 
   async function verifyPermissions() {
@@ -77,7 +87,7 @@ function LocationPicker({ onPickLocation }) {
       // <Image source={{ uri: getMapPreview(
       //   pickedLocation.lat,
       //       pickedLocation.lng
-      // ) }} style={styles.image} />
+      // ) }} style={styles.image} /> will return location from google api
       <MapView initialRegion={region} style={styles.image}></MapView>
       // <Text>{getMapPreview(pickedLocation.lat, pickedLocation.lng)}</Text>
     );
