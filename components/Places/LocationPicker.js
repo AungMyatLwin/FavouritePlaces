@@ -1,4 +1,4 @@
-import { Alert, Image, StyleSheet, Text, View } from "react-native";
+import { Alert, StyleSheet, Text, View } from "react-native";
 import { COLORS } from "../../constants/colors";
 import OutLineButton from "../ui/OutlineButton";
 // import { WebView } from "react-native-webview";
@@ -14,6 +14,7 @@ import MapView from "react-native-maps";
 function LocationPicker({ onPickLocation }) {
   const [pickedLocation, setPickedLocation] = useState({});
   const isFocused = useIsFocused();
+
   const navigation = useNavigation();
   const route = useRoute();
 
@@ -37,8 +38,7 @@ function LocationPicker({ onPickLocation }) {
           pickedLocation.lat,
           pickedLocation.lng
         );
-        console.log(address);
-        onPickLocation({ ...pickedLocation });
+        onPickLocation({ ...pickedLocation, address: address });
       }
     }
     handleLocation();

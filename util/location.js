@@ -1,3 +1,4 @@
+import PromiseRej from "../components/ui/PromiseRej";
 import { API_KEY, HOST, URL } from "./apiKey";
 
 const GOOGLE_API_KEY = "";
@@ -15,13 +16,16 @@ export async function getAddress(lat, lng) {
     },
   };
   const url = `${URL}?latitude=${lat}&longitude=${lng}`;
-
-  const response = await fetch(url, options);
-  if (!response.ok) {
-    throw new Error("Failed to fetch address");
+  try {
+    const response = await fetch(url, options);
+    // const =await fetch(url);
+    if (!response.ok) {
+      throw new Error("Failed to fetch address");
+    }
+    const data = await response.json();
+    const address = data.Country;
+    return address;
+  } catch (error) {
+    <PromiseRej />;
   }
-  // const =await fetch(url);
-  const data = await response.json();
-  const address = data.Country;
-  return address;
 }
