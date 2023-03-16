@@ -55,7 +55,7 @@ export function insertPlace(place) {
   return promise;
 }
 
-function fetchPlaces() {
+export function fetchPlaces() {
   const promise = new Promise((resolve, reject) => {
     db.transaction((txc) => {
       txc.executeSql(
