@@ -13,6 +13,7 @@ import AppLoading from "expo-app-loading";
 const Stack = createNativeStackNavigator();
 export default function App() {
   const [dbInit, setDbInit] = useState(false);
+
   useEffect(() => {
     init()
       .then(() => {
