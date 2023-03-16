@@ -52,4 +52,24 @@ export function insertPlace(place) {
       );
     });
   });
+  return promise;
+}
+
+function fetchPlaces() {
+  const promise = new Promise((resolve, reject) => {
+    db.transaction((txc) => {
+      txc.executeSql(
+        `SELECT * FROM places`,
+        [],
+        (_, result) => {
+          resolve(result);
+        },
+        (_, err) => {
+          reject(err);
+        }
+      );
+    });
+  });
+
+  return promise;
 }
