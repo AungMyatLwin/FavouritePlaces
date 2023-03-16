@@ -90,3 +90,5 @@ export function fetchPlaces() {
 
   return promise;
 }
+
+export function fetchPlaces() {}
